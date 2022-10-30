@@ -1,5 +1,3 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:flutter_slidy/app/modules/digimon/digimon_model.dart';
 part of 'digimon_cubit.dart';
 
 class DigimonGetState extends Equatable {

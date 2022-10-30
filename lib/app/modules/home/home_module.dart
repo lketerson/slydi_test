@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_slidy/app/modules/digimon/digimon_module.dart';
+import 'package:flutter_slidy/app/modules/digimon/module/digimon_module.dart';
 
 import 'counter_cubit.dart';
 import 'home_page.dart';

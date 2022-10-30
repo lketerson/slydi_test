@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_slidy/app/modules/digimon/digimon_model.dart';
-import 'package:flutter_slidy/app/modules/digimon/digimon_respository_interface.dart';
+import 'package:flutter_slidy/app/modules/digimon/models/digimon_model.dart';
+import 'package:flutter_slidy/app/modules/digimon/repositories/digimon_respository_interface.dart';
 
 class DigimonRepository implements IDigimonRespositoryInterface {
   final Dio _dio;
