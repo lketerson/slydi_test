@@ -9,6 +9,7 @@ class DigimonModule extends Module {
   final List<Bind> binds = [
     Bind.singleton<Dio>((i) => Dio()),
     Bind.singleton((i) => DigimonRepository(i<Dio>())),
+    Bind.singleton<DigimonCubit>((i) => DigimonCubit()),
   ];
 
   @override

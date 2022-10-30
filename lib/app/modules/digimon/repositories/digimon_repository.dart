@@ -17,6 +17,7 @@ class DigimonRepository implements IDigimonRespositoryInterface {
       digimontList = (response.data as List).map((item) {
         return DigimonModel.fromMap(item);
       }).toList();
+      print(digimontList);
 
       return digimontList;
     } on DioError catch (e) {

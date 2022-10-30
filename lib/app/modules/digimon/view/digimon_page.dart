@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_slidy/app/modules/digimon/cubit/digimon_cubit.dart';
 import 'package:flutter_slidy/app/modules/digimon/repositories/digimon_repository.dart';
 
@@ -18,6 +19,7 @@ class DigimonPage extends StatefulWidget {
 class DigimonPageState extends State<DigimonPage> {
   @override
   Widget build(BuildContext context) {
+    var digimonCubit = Modular.get<DigimonCubit>();
     // var _digimonRepository = widget.digimonRepository;
     // var digimonList = [];
     return Scaffold(
@@ -25,6 +27,7 @@ class DigimonPageState extends State<DigimonPage> {
         title: const Text('Digimons'),
       ),
       body: BlocBuilder<DigimonCubit, DigimonGetState>(
+        bloc: digimonCubit,
         builder: (context, state) {
           if (state is DigimonGetLoading) {
             return const CircularProgressIndicator();
