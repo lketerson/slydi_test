@@ -14,11 +14,11 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   final CounterCubit _counterCubit = Modular.get();
 
-  @override
-  void dispose() {
-    _counterCubit.close();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _counterCubit.close();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

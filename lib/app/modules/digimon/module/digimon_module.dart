@@ -7,9 +7,9 @@ import 'package:flutter_slidy/app/modules/digimon/view/digimon_page.dart';
 class DigimonModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.singleton((i) => DigimonCubit()),
     Bind.singleton<Dio>((i) => Dio()),
     Bind.singleton((i) => DigimonRepository(i<Dio>())),
-    Bind.singleton<DigimonCubit>((i) => DigimonCubit(i<DigimonRepository>())),
   ];
 
   @override

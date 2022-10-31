@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_slidy/app/modules/digimon/components/digimon_card.dart';
 import 'package:flutter_slidy/app/modules/digimon/cubit/digimon_cubit.dart';
 import 'package:flutter_slidy/app/modules/digimon/repositories/digimon_repository.dart';
 
@@ -20,38 +21,44 @@ class DigimonPageState extends State<DigimonPage> {
   @override
   Widget build(BuildContext context) {
     var digimonCubit = Modular.get<DigimonCubit>();
-
-    // var _digimonRepository = widget.digimonRepository;
-    // var digimonList = [];
+    if (digimonCubit.state is DigimonGetInitial) {
+      digimonCubit.fecthDigimon();
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Digimons'),
       ),
-      body: BlocBuilder<DigimonCubit, IDigimonGetState>(
-        bloc: digimonCubit,
-        builder: (context, state) {
-          if (state is DigimonGetLoading) {
-            return const CircularProgressIndicator();
-          } else if (state is DigimonGetError) {
-            return Center(
-              child: Text(state.error),
+      body: Center(
+        child: BlocBuilder<DigimonCubit, IDigimonGetState>(
+          bloc: digimonCubit,
+          builder: (context, state) {
+            if (state is DigimonGetLoading) {
+              return const CircularProgressIndicator();
+            } else if (state is DigimonGetError) {
+              return Center(
+                child: Text(state.error),
+              );
+            } else if (state is DigimonGetLoaded) {
+              final digimonList = state.digimonList;
+              return digimonList.isEmpty
+                  ? const Text('No data found')
+                  : ListView.builder(
+                      itemCount: digimonList.length,
+                      itemBuilder: (context, index) => DigimonCard(
+                          name: digimonList[index].name.toString(),
+                          level: digimonList[index].level.toString(),
+                          imgUrl: digimonList[index].img.toString()));
+            }
+            return const Center(
+              child: Text("Unknown Error"),
             );
-          } else if (state is DigimonGetLoaded) {
-            final digimonList = state.digimonList;
-            return digimonList.isEmpty
-                ? const Text('No data found')
-                : ListView.builder(
-                    itemCount: digimonList.length,
-                    itemBuilder: (context, index) => ListTile(
-                      title: Text(digimonList[index].name.toString()),
-                    ),
-                  );
-          }
-          return const Center(child: Text('Unknown Error'));
-        },
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Modular.to.navigate('/');
+        },
       ),
     );
   }

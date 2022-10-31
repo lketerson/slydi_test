@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_slidy/app/modules/digimon/models/digimon_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_slidy/app/modules/digimon/repositories/digimon_repository.dart';
@@ -7,8 +8,9 @@ import 'package:flutter_slidy/app/modules/digimon/repositories/digimon_repositor
 part 'digimon_state.dart';
 
 class DigimonCubit extends Cubit<IDigimonGetState> {
-  final DigimonRepository digimonRepository;
-  DigimonCubit(this.digimonRepository) : super(DigimonGetInitial());
+  DigimonCubit() : super(DigimonGetInitial());
+
+  final DigimonRepository digimonRepository = Modular.get<DigimonRepository>();
 
   Future<void> fecthDigimon() async {
     emit(DigimonGetLoading());
