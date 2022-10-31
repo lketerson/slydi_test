@@ -1,16 +1,16 @@
 part of 'digimon_cubit.dart';
 
-class DigimonGetState extends Equatable {
-  const DigimonGetState();
+abstract class IDigimonGetState extends Equatable {
+  const IDigimonGetState();
   @override
   List<Object> get props => [];
 }
 
-class DigimonGetInitial extends DigimonGetState {}
+class DigimonGetInitial extends IDigimonGetState {}
 
-class DigimonGetLoading extends DigimonGetState {}
+class DigimonGetLoading extends IDigimonGetState {}
 
-class DigimonGetLoaded extends DigimonGetState {
+class DigimonGetLoaded extends IDigimonGetState {
   final List<DigimonModel> digimonList;
 
   const DigimonGetLoaded(this.digimonList);
@@ -19,7 +19,7 @@ class DigimonGetLoaded extends DigimonGetState {
   List<Object> get props => [digimonList];
 }
 
-class DigimonGetError extends DigimonGetState {
+class DigimonGetError extends IDigimonGetState {
   final String error;
 
   const DigimonGetError(this.error);

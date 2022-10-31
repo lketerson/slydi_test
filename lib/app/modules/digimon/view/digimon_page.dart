@@ -20,13 +20,14 @@ class DigimonPageState extends State<DigimonPage> {
   @override
   Widget build(BuildContext context) {
     var digimonCubit = Modular.get<DigimonCubit>();
+
     // var _digimonRepository = widget.digimonRepository;
     // var digimonList = [];
     return Scaffold(
       appBar: AppBar(
         title: const Text('Digimons'),
       ),
-      body: BlocBuilder<DigimonCubit, DigimonGetState>(
+      body: BlocBuilder<DigimonCubit, IDigimonGetState>(
         bloc: digimonCubit,
         builder: (context, state) {
           if (state is DigimonGetLoading) {
